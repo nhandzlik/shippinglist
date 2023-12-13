@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Shopping plans</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="grocerylist.js"></script>
+    <link rel="stylesheet" type="text/css" href="list.css">
+
+    <script>
+        function downloadPDF() {
+            // Create a new jsPDF instance
+            const pdf = new jsPDF();
+
+            // Get the shopping list content
+            const shoppingListContent = document.querySelector('.list').innerText;
+
+            // Set the title and content in the PDF
+            pdf.text(10, 10, 'Shopping List');
+            pdf.text(10, 20, shoppingListContent);
+
+            // Save the PDF as 'shopping_list.pdf'
+            pdf.save('shopping_list.pdf');
+        }
+    </script>
+    
+</head>
+
+<body>
+    <h1>Shopping list:</h1>
+
+    <form id="shoppingListForm" action="add_item.php" method="post">
+        <label>Add item:</label>
+        <input type="text" name="item">
+        <input id="addNeed" type="submit" value="Need">
+        <input id="addHave" type="submit" value="Have">
+        
+        <!-- Button to download the shopping list as PDF -->
+        <button type="button" onclick="downloadPDF()">Download PDF</button>
+    </form>
+
+    <h2>To buy:</h2>
+    <ul class='list'>
+        <!-- Your list items will go here -->
+        <ul class='list'>
+            <li>Apples</li>
+            <li>Bread</li>
+            <li>Milk</li>
+            <li>Eggs</li>
+            <li>Cookies</li>
+            <li>Coffe</li>
+            <li>Lemons</li>
+            <li>Potatoes</li>
+    </ul>
+</body>
+
+</html>
